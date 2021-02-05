@@ -3,10 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.Abstract
+namespace DataAccess.Abstract
 {
-	public interface IProductService
+	public interface IColorDal : IEntityRepository<Color>
 	{
-		List<Product> GetAll();
 	}
 }
