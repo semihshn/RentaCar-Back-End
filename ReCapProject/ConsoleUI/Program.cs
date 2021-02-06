@@ -11,10 +11,9 @@ namespace ConsoleUI
 		static void Main(string[] args)
 		{
 
-			
+
 			CarManager carManager = new CarManager(new EfCarDal());
 
-			//Araç Description özelliği 2 karakterden az olamaz ve DailyPrice özelliği pozitif bir değer olmalıdır şartını test ediyoruz
 			EfCarDal efCarDal = new EfCarDal();
 			efCarDal.Add(new Car()
 			{
@@ -26,22 +25,9 @@ namespace ConsoleUI
 				
 			});
 
-			//Console.WriteLine("Tüm Araçlar");
-			//foreach (var cars in carManager.GetAll())
-			//{
-			//	Console.Write("Id={0} ", cars.Id);
-			//	Console.Write("BrandId={0} ", cars.BrandId);
-			//	Console.Write("ColorId={0} ", cars.ColorId);
-			//	Console.Write("DailyPrice={0} ", cars.DailyPrice);
-			//	Console.Write("ModelYear={0} ", cars.ModelYear);
-			//	Console.Write("Description={0} ", cars.Description);
-			//	Console.WriteLine();
-			//}
-
-				Console.WriteLine("--------------------");
-				Console.WriteLine("BrandId değeri 3 olan araçlar");
-				Car cars = carManager.GetCarsByBrandId(3);
-
+			Console.WriteLine("Tüm Araçlar");
+			foreach (var cars in carManager.GetAll())
+			{
 				Console.Write("Id={0} ", cars.Id);
 				Console.Write("BrandId={0} ", cars.BrandId);
 				Console.Write("ColorId={0} ", cars.ColorId);
@@ -49,10 +35,24 @@ namespace ConsoleUI
 				Console.Write("ModelYear={0} ", cars.ModelYear);
 				Console.Write("Description={0} ", cars.Description);
 				Console.WriteLine();
+			}
+			Console.WriteLine("--------------------");
+			Console.WriteLine("BrandId değeri 3 olan araçlar");
+			foreach (var cars in carManager.GetCarsByBrandId(3))
+			{
+				Console.Write("Id={0} ", cars.Id);
+				Console.Write("BrandId={0} ", cars.BrandId);
+				Console.Write("ColorId={0} ", cars.ColorId);
+				Console.Write("DailyPrice={0} ", cars.DailyPrice);
+				Console.Write("ModelYear={0} ", cars.ModelYear);
+				Console.Write("Description={0} ", cars.Description);
+				Console.WriteLine();
+			}
 
 			Console.WriteLine("--------------------");
 			Console.WriteLine("ColorId değeri 1 olan araçlar");
-			Car car = carManager.GetCarsByColorId(1);
+			foreach (var cars in carManager.GetCarsByColorId(1))
+			{
 				Console.Write("Id={0} ", cars.Id);
 				Console.Write("BrandId={0} ", cars.BrandId);
 				Console.Write("ColorId={0} ", cars.ColorId);
@@ -60,6 +60,7 @@ namespace ConsoleUI
 				Console.Write("ModelYear={0} ", cars.ModelYear);
 				Console.Write("Description={0} ", cars.Description);
 				Console.WriteLine();
+			}
 		}
 	}
 }
