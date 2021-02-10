@@ -2,6 +2,7 @@
 using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Linq;
 
@@ -11,64 +12,192 @@ namespace ConsoleUI
 	{
 		static void Main(string[] args)
 		{
+			//TestGetAllCar();
+
+			//TestGetAllBrand();
+
+			//TestGetAllColor();
+
+			//TestGetAllCarModel();
 
 
+			//TestAddNewCar(3,5,2,"2020",250,"Mercedes Motoru");
+
+			//TestAddNewBrand("Renoult");
+
+			//TestAddNewColor("Beyaz");
+
+			//TestAddNewCarModel(2, "Clio");
+
+
+			//TestGetCarsByBrandId(2);
+
+			//TestGetBrandById(1);
+
+			//TestGetCarsByColorId(1);
+
+			//TestDeleteCar(4);
+
+
+
+			//TestGetCarDetails();
+
+
+		}
+
+		private static void TestGetBrandById(int id)
+		{
+			BrandManager brandManager = new BrandManager(new EfBrandDal());
+
+			Console.WriteLine("{0}/{1}", brandManager.GetById(id).Id, brandManager.GetById(id).Name);
+		}
+
+		private static void TestGetAllBrand()
+		{
+			BrandManager brandManager = new BrandManager(new EfBrandDal());
+
+			foreach (var brand in brandManager.GetAll())
+			{
+				Console.WriteLine("{0}/{1}", brand.Id, brand.Name);
+			}
+		}
+
+		private static void TestGetAllColor()
+		{
+			ColorManager colorManager = new ColorManager(new EfColorDal());
+
+			foreach (var color in colorManager.GetAll())
+			{
+				Console.WriteLine("{0}/{1}", color.Id, color.Name);
+			}
+		}
+
+		private static void TestGetAllCarModel()
+		{
+			CarModelManager carModelManager = new CarModelManager(new EfCarModelDal());
+
+			foreach (var carmodel in carModelManager.GetAll())
+			{
+				Console.WriteLine("{0}/{1}/{2}", carmodel.Id, carmodel.BrandId, carmodel.Name);
+			}
+		}
+
+		private static void TestGetCarDetails()
+		{
 			CarManager carManager = new CarManager(new EfCarDal());
-			//Description özelliği en az 2 karakter olmalı ve DailyPrice özelliği pozitif bir değer olmalı şartını test ettik
+
+			foreach (var car in carManager.GetCarDetails())
+			{
+				Console.WriteLine("{0}/{1}/{2}/{3}",
+					car.CarName,
+					car.ColorName,
+					car.BrandName,
+					car.DailyPrice);
+			}
+		}
+
+		private static void TestAddNewCar(int brandId , int modelId , int colorId , string modelYear , int dailyPrice , string description)
+		{
 			EfCarDal efCarDal = new EfCarDal();
+
 			efCarDal.Add(new Car()
 			{
-				BrandId=3,
-				ColorId=1,
-				ModelYear="2008",
-				DailyPrice=100,
-				Description="F"
-				
+				BrandId = brandId,
+				ModelId = modelId,
+				ColorId = colorId,
+				ModelYear = modelYear,
+				DailyPrice = dailyPrice,
+				Description = description
+
 			});
+		}
 
-			//Saçma bir kayıt eklemiştim onu sildim
-			//ReCapContext reCapContext = new ReCapContext();
-			//reCapContext.Cars.Remove(reCapContext.Cars.SingleOrDefault(c => c.Id == 4));
-			//reCapContext.SaveChanges();
+		private static void TestAddNewCarModel(int brandId , string name)
+		{
+			EfCarModelDal efCarModelDal = new EfCarModelDal();
 
-			//Tüm araçları ekrana getirdik
-			Console.WriteLine("Tüm Araçlar");
-			foreach (var cars in carManager.GetAll())
+			efCarModelDal.Add(new CarModel()
 			{
-				Console.Write("Id={0} ", cars.Id);
-				Console.Write("BrandId={0} ", cars.BrandId);
-				Console.Write("ColorId={0} ", cars.ColorId);
-				Console.Write("DailyPrice={0} ", cars.DailyPrice);
-				Console.Write("ModelYear={0} ", cars.ModelYear);
-				Console.Write("Description={0} ", cars.Description);
-				Console.WriteLine();
+				BrandId = brandId,
+				Name = name
+			});
+		}
+
+		private static void TestAddNewBrand(string name)
+		{
+			EfBrandDal efBrandDal = new EfBrandDal();
+
+			efBrandDal.Add(new Brand()
+			{
+				Name = name
+			});
+		}
+
+		private static void TestAddNewColor(string name)
+		{
+			EfColorDal efColorDal = new EfColorDal();
+
+			efColorDal.Add(new Color()
+			{
+				Name = name
+			});
+		}
+
+		private static void TestDeleteCar(int id)
+		{
+			ReCapContext reCapContext = new ReCapContext();
+			reCapContext.Cars.Remove(reCapContext.Cars.SingleOrDefault(c => c.Id == id));
+			reCapContext.SaveChanges();
+		}
+
+		private static void TestGetCarsByColorId(int id)
+		{
+			CarManager carManager = new CarManager(new EfCarDal());
+
+			foreach (var car in carManager.GetCarsByColorId(id))
+			{
+				Console.WriteLine("{0}/{1}/{2}/{3}/{4}/{5}/{6}",
+					car.Id,
+					car.BrandId,
+					car.ModelId,
+					car.ColorId,
+					car.DailyPrice,
+					car.ModelYear,
+					car.Description);
 			}
-			Console.WriteLine("--------------------");
-			//BrandId değeri 3 olan araçları getirdik
-			Console.WriteLine("BrandId değeri 3 olan araçlar");
-			foreach (var cars in carManager.GetCarsByBrandId(3))
-			{
-				Console.Write("Id={0} ", cars.Id);
-				Console.Write("BrandId={0} ", cars.BrandId);
-				Console.Write("ColorId={0} ", cars.ColorId);
-				Console.Write("DailyPrice={0} ", cars.DailyPrice);
-				Console.Write("ModelYear={0} ", cars.ModelYear);
-				Console.Write("Description={0} ", cars.Description);
-				Console.WriteLine();
-			}
+		}
 
-			Console.WriteLine("--------------------");
-			//ColorId değeri 3 olan araçları getirdik
-			Console.WriteLine("ColorId değeri 1 olan araçlar");
-			foreach (var cars in carManager.GetCarsByColorId(1))
+		private static void TestGetCarsByBrandId(int id)
+		{
+			CarManager carManager = new CarManager(new EfCarDal());
+
+			foreach (var car in carManager.GetCarsByBrandId(id))
 			{
-				Console.Write("Id={0} ", cars.Id);
-				Console.Write("BrandId={0} ", cars.BrandId);
-				Console.Write("ColorId={0} ", cars.ColorId);
-				Console.Write("DailyPrice={0} ", cars.DailyPrice);
-				Console.Write("ModelYear={0} ", cars.ModelYear);
-				Console.Write("Description={0} ", cars.Description);
-				Console.WriteLine();
+				Console.WriteLine("{0}/{1}/{2}/{3}/{4}/{5}/{6}",
+					car.Id,
+					car.BrandId,
+					car.ModelId,
+					car.ColorId,
+					car.DailyPrice,
+					car.ModelYear,
+					car.Description);
+			}
+		}
+
+		private static void TestGetAllCar()
+		{
+			CarManager carManager = new CarManager(new EfCarDal());
+
+			foreach (var car in carManager.GetAll())
+			{
+				Console.WriteLine("{0}/{1}/{2}/{3}/{4}/{5}/{6}",
+					car.Id,
+					car.BrandId,
+					car.ModelId,
+					car.ColorId,
+					car.DailyPrice,
+					car.ModelYear,
+					car.Description);
 			}
 		}
 	}
