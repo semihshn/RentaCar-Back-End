@@ -8,6 +8,8 @@ using Entities.DTOs;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using Business.Constants;
+using DataAccess.Concrete.EntityFramework;
+using System.Linq;
 
 namespace Business.Concrete
 {
@@ -22,7 +24,15 @@ namespace Business.Concrete
 
 		public IDataResult<List<Car>> GetAll()
 		{
-			return new SuccessDataResult<List<Car>>(_carDal.GetAll());
+            if (DateTime.Now.Hour==16)
+            {
+				return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
+            else
+            {
+				return new SuccessDataResult<List<Car>>(_carDal.GetAll());
+			}
+
 		}
 
 		public IDataResult<List<Car>> GetCarsByBrandId(int id)
@@ -42,22 +52,46 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
+			//using (ReCapContext reCapContext = new ReCapContext())
+			//{
+			//	var brand = reCapContext.Brands.Where(x => x.Id == car.BrandId);
+			//	var model = reCapContext.Models.Where(m => m.Id == car.ModelId);
 
-			if (car.Description.Length < 2 )
-            {
+			//	string brandLength=brand.Select(x => x.Name).ToString();
+			//	string modelLength = model.Select(x => x.Name).ToString();
+			//	int carNameLength = brandLength.Length + modelLength.Length;
+
+			//	if (carNameLength < 3)
+			//	{
+			//		return new ErrorResult(Messages.CarNameInvalid);
+			//	}
+			//	else if (car.DailyPrice < 0)
+			//	{
+			//		return new ErrorResult(Messages.DailyPriceInvalid);
+			//	}
+			//	else
+			//	{
+			//		_carDal.Add(car);
+			//		return new SuccessResult(Messages.CarAdded);
+			//	}
+			//}
+
+			if (car.Description.Length < 2)
+			{
 				return new ErrorResult(Messages.CarNameInvalid);
-            }
-            else if (car.DailyPrice < 0)
-            {
+			}
+			else if (car.DailyPrice < 0)
+			{
 				return new ErrorResult(Messages.DailyPriceInvalid);
-            }
-            else
-            {
+			}
+			else
+			{
 				_carDal.Add(car);
 				return new SuccessResult(Messages.CarAdded);
 			}
-			
-        }
+
+
+		}
 
 		public IResult Update(Car car)
         {
@@ -70,5 +104,10 @@ namespace Business.Concrete
 			_carDal.Delete(car);
 			return new SuccessResult(Messages.CarDeleted);
         }
+
+        public IDataResult<Car> GetById(int id)
+        {
+			return new SuccessDataResult<Car>(_carDal.Get(b => b.Id == id));
+		}
     }
 }

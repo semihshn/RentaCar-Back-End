@@ -11,41 +11,157 @@ namespace ConsoleUI
 	class Program
 	{
 		static void Main(string[] args)
-		{
-			//TestGetAllCar();
+        {
+            //TestGetAllCar();
 
-			//TestGetAllBrand();
+            //TestGetAllBrand();
 
-			//TestGetAllColor();
+            //TestGetAllColor();
 
-			//TestGetAllCarModel();
+            //TestGetAllCarModel();
 
+            //TestUserGetAll();
 
-			//TestAddNewCar(3,5,2,"2020",250,"Mercedes Motoru");
+            //TestGetAllCustomer();
 
-			//TestAddNewBrand("Ferrari");
-
-			//TestAddNewColor("Beyaz");
-
-			//TestAddNewCarModel(2, "Clio");
+            //TestGetAllRentals();
 
 
-			//TestGetCarsByBrandId(2);
+            //TestAddNewCar(3,4,5,"1984",500,"Kırmızı şeytan");
 
-			//TestGetBrandById(1);
+            //TestAddNewBrand("A");
 
-			//TestGetCarsByColorId(1);
+            //TestAddNewColor("Sarı");
 
-			//TestDeleteCar(4);
+            //TestAddNewCarModel(3, "288 GTO");
+
+            //TestUserAdd("Melike","Belpınar","mlk_blp@hotmail.com","12345689");
+
+            //TestAddNewCustomer(2,"BorsaBiziz A.S");
+
+            //TestAddNewRentalCar(1,1,DateTime.Now);
 
 
 
-			//TestGetCarDetails();
+
+            //TestGetCarsByBrandId(2);
+
+            //TestGetBrandById(1);
+
+            //TestGetCarsByColorId(1);
+
+            //TestDeleteCarModel(3);
+            //TestDeleteCar(3);
+            //TestDeleteBrand(5);
+            //TestDeleteColor(3);
+            //TestDeleteRental(2);
 
 
-		}
 
-		private static void TestGetBrandById(int id)
+
+            //TestGetCarDetails();
+
+            //TestGetRentalDetailsDto(1);
+
+        }
+
+        private static void TestGetRentalDetailsDto(int id)
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            var result = rentalManager.GetRentalDetailsDto(id);
+
+            foreach (var rentals in result.Data)
+            {
+                Console.WriteLine("{0}/{1}/{2}//{3}//{4}/{5}/{6}", rentals.Id, rentals.CarId, rentals.CarName, rentals.UserName, rentals.CustomerName, rentals.RentDate, rentals.ReturnDate);
+            }
+        }
+
+        private static void TestDeleteRental(int id)
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            rentalManager.Delete(new Rental() { Id = id });
+        }
+
+        private static RentalManager TestGetAllRentals()
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            var result = rentalManager.GetAll();
+
+            foreach (var rentals in result.Data)
+            {
+                Console.WriteLine("{0}/{1}/{2}//{3}//{4}", rentals.Id, rentals.CarId, rentals.CustomerId, rentals.RentDate, rentals.ReturnDate);
+            }
+
+            return rentalManager;
+        }
+
+        private static RentalManager TestAddNewRentalCar(int carId, int customerId, DateTime rentDate)
+        {
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            rentalManager.Add(new Rental()
+            {
+                CarId = carId,
+                CustomerId = customerId,
+				RentDate=rentDate
+			});
+            return rentalManager;
+        }
+
+        private static void TestGetAllCustomer()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+            var result = customerManager.GetAll();
+
+            foreach (var customer in result.Data)
+            {
+                Console.WriteLine("{0}/{1}/{2}", customer.Id, customer.UserId, customer.CompanyName);
+
+            }
+        }
+
+        private static CustomerManager TestAddNewCustomer(int id, string companyName)
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+            customerManager.Add(new Customer()
+            {
+                UserId = id,
+                CompanyName = companyName,
+            });
+            return customerManager;
+        }
+
+        private static void TestUserGetAll()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+
+            var result = userManager.GetAll();
+            foreach (var user in result.Data)
+            {
+                Console.WriteLine("{0}/{1}/{2}/{3}/{4}", user.Id, user.FirstName, user.LastName, user.Email, user.Password);
+            }
+        }
+
+        private static UserManager TestUserAdd(string firstName, string lastName, string eMail, string password)
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+
+            userManager.Add(new User
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = eMail,
+                Password = password
+			});
+            return userManager;
+        }
+
+        private static void TestGetBrandById(int id)
 		{
 			BrandManager brandManager = new BrandManager(new EfBrandDal());
 
@@ -155,9 +271,30 @@ namespace ConsoleUI
 
 		private static void TestDeleteCar(int id)
 		{
-			ReCapContext reCapContext = new ReCapContext();
-			reCapContext.Cars.Remove(reCapContext.Cars.SingleOrDefault(c => c.Id == id));
-			reCapContext.SaveChanges();
+			CarManager carManager = new CarManager(new EfCarDal());
+			var result = carManager.GetById(id);
+			carManager.Delete(result.Data);
+		}
+
+		private static void TestDeleteBrand(int id)
+		{
+			BrandManager brandManager = new BrandManager(new EfBrandDal());
+			var result = brandManager.GetById(id);
+			brandManager.Delete(result.Data);
+		}
+
+		private static void TestDeleteColor(int id)
+		{
+			ColorManager colorManager = new ColorManager(new EfColorDal());
+			var result = colorManager.GetById(id);
+			colorManager.Delete(result.Data);
+		}
+
+		private static void TestDeleteCarModel(int id)
+		{
+			CarModelManager carModelManager = new CarModelManager(new EfCarModelDal());
+			var result = carModelManager.GetById(id);
+			carModelManager.Delete(result.Data);
 		}
 
 		private static void TestGetCarsByColorId(int id)
