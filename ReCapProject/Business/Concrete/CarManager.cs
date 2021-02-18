@@ -52,30 +52,6 @@ namespace Business.Concrete
 
         public IResult Add(Car car)
         {
-			//using (ReCapContext reCapContext = new ReCapContext())
-			//{
-			//	var brand = reCapContext.Brands.Where(x => x.Id == car.BrandId);
-			//	var model = reCapContext.Models.Where(m => m.Id == car.ModelId);
-
-			//	string brandLength=brand.Select(x => x.Name).ToString();
-			//	string modelLength = model.Select(x => x.Name).ToString();
-			//	int carNameLength = brandLength.Length + modelLength.Length;
-
-			//	if (carNameLength < 3)
-			//	{
-			//		return new ErrorResult(Messages.CarNameInvalid);
-			//	}
-			//	else if (car.DailyPrice < 0)
-			//	{
-			//		return new ErrorResult(Messages.DailyPriceInvalid);
-			//	}
-			//	else
-			//	{
-			//		_carDal.Add(car);
-			//		return new SuccessResult(Messages.CarAdded);
-			//	}
-			//}
-
 			if (car.Description.Length < 2)
 			{
 				return new ErrorResult(Messages.CarNameInvalid);

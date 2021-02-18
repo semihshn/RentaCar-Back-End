@@ -14,20 +14,6 @@ namespace Core.DataAccess.EntityFramework
 	{
 		public void Add(TEntity entity)
 		{
-			//if (entity.Description.Length > 2 && entity.DailyPrice > 0)
-			//{
-			//	using (TContext context = new TContext())
-			//	{
-			//		var addedEntity = context.Entry(entity);
-			//		addedEntity.State = EntityState.Added;
-			//		context.SaveChanges();
-			//	}
-			//}
-			//else
-			//{
-			//	Console.WriteLine("Araç ismi 2 karakterden büyük olmalı ve günlük fiyat poizitif bir değer olmalıdır.");
-			//}
-
 			using (TContext context = new TContext())
 			{
 				var addedEntity = context.Entry(entity);

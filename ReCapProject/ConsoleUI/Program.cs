@@ -39,22 +39,22 @@ namespace ConsoleUI
 
             //TestAddNewCustomer(2,"BorsaBiziz A.S");
 
-            //TestAddNewRentalCar(1,1,DateTime.Now);
+            //TestAddNewRentalCar(1,1);
 
 
 
 
-            //TestGetCarsByBrandId(2);
+			//TestGetCarsByBrandId(2);
 
-            //TestGetBrandById(1);
+			//TestGetBrandById(1);
 
-            //TestGetCarsByColorId(1);
+			//TestGetCarsByColorId(1);
 
-            //TestDeleteCarModel(3);
-            //TestDeleteCar(3);
-            //TestDeleteBrand(5);
-            //TestDeleteColor(3);
-            //TestDeleteRental(2);
+			//TestDeleteCarModel(3);
+			//TestDeleteCar(3);
+			//TestDeleteBrand(5);
+			//TestDeleteColor(3);
+			//TestDeleteRental(23);
 
 
 
@@ -98,15 +98,14 @@ namespace ConsoleUI
             return rentalManager;
         }
 
-        private static RentalManager TestAddNewRentalCar(int carId, int customerId, DateTime rentDate)
+        private static RentalManager TestAddNewRentalCar(int carId, int customerId)
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-            rentalManager.Add(new Rental()
-            {
-                CarId = carId,
-                CustomerId = customerId,
-				RentDate=rentDate
+			rentalManager.Add(new Rental()
+			{
+				CarId = carId,
+				CustomerId = customerId
 			});
             return rentalManager;
         }
