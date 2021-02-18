@@ -13,7 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "ConsoleUI\Cons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{D1178BB4-F467-432F-87E2-7619821BACD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{495C661C-1BC6-483B-B2D1-F355B461D191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{495C661C-1BC6-483B-B2D1-F355B461D191}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL Documents", "SQL Documents", "{53343628-0A9B-45C1-8897-ADBB9F99DF33}"
+	ProjectSection(SolutionItems) = preProject
+		SQL Documents\reCapDatabase.mdf = SQL Documents\reCapDatabase.mdf
+		SQL Documents\reCapDatabase_log.ldf = SQL Documents\reCapDatabase_log.ldf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
