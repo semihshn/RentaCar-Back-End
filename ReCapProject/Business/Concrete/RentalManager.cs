@@ -22,6 +22,7 @@ namespace Business.Concrete
             _rentalDal = rentalDal;
         }
 
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
             var result = CheckReturnDate(rental.CarId);
@@ -61,7 +62,6 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id));
         }
 
-        [ValidationAspect(typeof(RentalValidator))]
         public IDataResult<List<RentalDetailDto>> GetRentalDetailsDto(int carId)
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(x => x.CarId == carId));

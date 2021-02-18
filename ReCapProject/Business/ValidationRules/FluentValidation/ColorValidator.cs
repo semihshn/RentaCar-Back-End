@@ -8,5 +8,9 @@ namespace Business.ValidationRules.FluentValidation
 {
     public class ColorValidator : AbstractValidator<Color>
     {
+        public ColorValidator()
+        {
+            RuleFor(c => c.Name).MinimumLength(2);
+        }
     }
 }

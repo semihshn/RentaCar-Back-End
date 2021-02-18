@@ -10,6 +10,8 @@ using Core.Utilities.Results.Concrete;
 using Business.Constants;
 using DataAccess.Concrete.EntityFramework;
 using System.Linq;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 
 namespace Business.Concrete
 {
@@ -50,7 +52,8 @@ namespace Business.Concrete
 			return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
 		}
 
-        public IResult Add(Car car)
+		[ValidationAspect(typeof(CarValidator))]
+		public IResult Add(Car car)
         {
 			if (car.Description.Length < 2)
 			{

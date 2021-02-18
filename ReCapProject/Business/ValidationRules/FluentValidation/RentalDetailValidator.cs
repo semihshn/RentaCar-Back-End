@@ -10,8 +10,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public RentalDetailValidator()
         {
-            RuleFor(r => r.CarName).MinimumLength(40);//RentalManager'daki GetRentalDetailsDto fonksiyonunda kullanıyorum ama çalışmıyor
-           // RuleFor(r => r.ReturnDate).
+
         }
     }
 }
