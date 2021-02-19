@@ -7,6 +7,8 @@ namespace Core.Utilities.Interceptors
 {
     public abstract class MethodInterception : MethodInterceptionBaseAttribute
     {
+        //Burada programımızdaki tüm methodlar için ayrı ayrı try-catch blogları yazmak yerine tek bir sefer yazıyoruz ve alt yapıyı
+        //kurduğumuzda , tüm metodlarımız bu try-catch içinden geçiyor , bu sayede "don't repeat yourself" ilkesine uymuş oluyoruz
         protected virtual void OnBefore(IInvocation invocation) { }
         protected virtual void OnAfter(IInvocation invocation) { }
         protected virtual void OnException(IInvocation invocation, System.Exception e) { }

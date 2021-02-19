@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Business.Concrete;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -16,7 +17,16 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(r => r.CarId).NotEmpty();
             RuleFor(r => r.CustomerId).NotEmpty();
+
+            RuleFor(r => r.CarId).Must(RentControll).WithMessage("Eklenmek istenen araç zaten kiralanmış");
         }
 
+        private bool RentControll(int arg)
+        {
+            IRentalDal _rentalDal=new EfRentalDal();
+
+            var result = _rentalDal.GetRentalDetails(x => x.CarId == arg);
+            return result.Count > 0 ? true : false;
+        }
     }
 }
