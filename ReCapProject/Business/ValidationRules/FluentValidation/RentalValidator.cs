@@ -26,7 +26,7 @@ namespace Business.ValidationRules.FluentValidation
             IRentalDal _rentalDal=new EfRentalDal();
 
             var result = _rentalDal.GetRentalDetails(x => x.CarId == arg);
-            return result.Count > 0 ? true : false;
+            return result.Count > 0 ? false : true;
         }
     }
 }
