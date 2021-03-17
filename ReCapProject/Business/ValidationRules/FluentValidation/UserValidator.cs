@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,6 @@ namespace Business.ValidationRules.FluentValidation
     {
         public UserValidator()
         {
-            RuleFor(u => u.Password).Length(8, 30);
-            RuleFor(user => user.Password).Must(ContainCapitalLetter).WithMessage("Şifre büyük harf içermelidir");
-
             RuleFor(u => u.Email).EmailAddress();
             RuleFor(u => u.Email).NotEmpty();
             RuleFor(u => u.Email).MaximumLength(50);
@@ -21,6 +19,9 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(u => u.FirstName).MaximumLength(30);
             RuleFor(u => u.LastName).NotEmpty();
             RuleFor(u => u.LastName).MaximumLength(30);
+
+            RuleFor(u => u.Age).NotEmpty();
+            RuleFor(u => u.Age).LessThan(DateTime.Now.AddYears(-18)).WithMessage("18 yaşından küçükler kayıt olamaz , araç kiralayamaz.");
 
         }
 

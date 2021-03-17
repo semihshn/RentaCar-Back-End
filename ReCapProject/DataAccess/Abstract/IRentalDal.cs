@@ -8,8 +8,8 @@ using System.Linq.Expressions;
 
 namespace DataAccess.Abstract
 {
-    public interface IRentalDal : IEntityRepository<Rental>
-    {
-        List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null);
-    }
+	public interface IRentalDal : IEntityRepository<Rental>
+	{
+		List<RentalDetailDto> GetCarDetails(Expression<Func<Rental, bool>> filter = null);
+	}
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -16,14 +18,17 @@ namespace Business.Constants
         public static string CarModelAdded = "Araba modeli eklendi";
         public static string CarModelUpdated = "Araba modeli güncellendi";
         public static string CarModelDeleted = "Araba modeli silindi";
+        public static string ModelNameMustUnique = "Bu model zaten var";
 
         public static string BrandAdded = "Marka eklendi";
         public static string BrandUpdated = "Marka güncellendi";
         public static string BrandDeleted = "Marka silindi";
+        public static string BrandNameMustUnique = "Bu marka kaydı zaten var";
 
         public static string ColorAdded = "Renk eklendi";
         public static string ColorUpdated = "Renk güncellendi";
         public static string ColorDeleted = "Renk silindi";
+        public static string ColorNameMustUnique = "Bu renk kaydı zaten var";
 
         public static string UserAdded = "Kullanıcı eklendi";
         public static string UserUpdated = "Kullanıcı güncellendi";
@@ -39,10 +44,27 @@ namespace Business.Constants
         public static string RentalDeleted = "Kiralama bilgisi silindi";
         public static string CarNotDelivered = "Araç henüz teslim edilmedi";
 
+        public static string CarImageAdded = "Araç fotoğrafı eklendi";
+        public static string CarImageUpdated = "Araç fotoğrafı güncellendi";
+        public static string CarImageDeleted = "Araç fotoğrafı silindi";
+        public static string CarImageLimitExceeded="Fotoğraf sınırı aşıldı";
+
         public static string MaintenanceTime = "Sistem bakımda";
-        
-        
+        public static string CarIdMustUnique="Bir araç aynı anda birden fazla kişiye kiralanamaz";
 
+        public static string ImageAdded = "Fotoğraf eklendi";
+        public static string ImageUpdated = "Fotoğraf güncellendi";
+        public static string ImageDeleted = "Fotoğraf silindi";
 
-    }
+        public static string UserRegistered = "Kullanıcı kaydedildi";
+        public static string UserNotFound="Kullanıcı bulunamadı";
+        public static string PasswordError="Hatalı şifre";
+        public static string UserAlreadyExists="Kullanıcı zaten var";
+        public static string AccessTokenCreated="Token oluşturuldu";
+        public static string SuccessfulLogin="Giriş başarılı";
+        public static string AuthorizationDenied="Yetkilendirme reddedildi";
+		public static string FailedCarImageAdd="Fotoğraf yüklenirken hata oluştu";
+		public static string ReturnedRental="Kiralama bilgisi döndürüldü";
+		public static string FailedRentalAddOrUpdate="Bu kiralık araç daha önce eklenmiş";
+	}
 }

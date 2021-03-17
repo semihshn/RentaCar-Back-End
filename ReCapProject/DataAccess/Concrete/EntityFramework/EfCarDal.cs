@@ -12,28 +12,36 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-	public class EfCarDal : EfEntityRepositoryBase<Car,ReCapContext> , ICarDal
-	{
-		public List<CarDetailDto> GetCarDetails()
-		{
-			using (ReCapContext reCapContext = new ReCapContext())
-			{
-				var result = from ca in reCapContext.Cars
-							 join b in reCapContext.Brands
-							 on ca.BrandId equals b.Id
-							 join co in reCapContext.Colors
-							 on ca.ColorId equals co.Id
-							 join m in reCapContext.Models
-							 on ca.ModelId equals m.Id
-							 select new CarDetailDto
-							 {
-								 CarName = b.Name + " " + m.Name,
-								 BrandName = b.Name,
-								 ColorName = co.Name,
-								 DailyPrice = ca.DailyPrice
-							 };
-				return result.ToList();
-			}
-		}
-	}
+    public class EfCarDal : EfEntityRepositoryBase<Car, ReCapContext>, ICarDal
+    {
+        public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
+        {
+            using (ReCapContext context = new ReCapContext())
+            {
+                var result = from c in filter == null ? context.Cars : context.Cars.Where(filter)
+                             join co in context.Colors
+                             on c.ColorId equals co.Id
+                             join b in context.Brands
+                             on c.BrandId equals b.Id
+                             join m in context.Models
+                             on c.ModelId equals m.Id
+                             join ci in context.CarImages
+                             on c.Id equals ci.CarId
+                             select new CarDetailDto
+                             {
+                                 CarId = c.Id,
+                                 CarName=b.Name+" "+m.Name,
+                                 BrandName = b.Name,
+                                 ColorName = co.Name,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description,
+                                 ModelYear = c.ModelYear,
+                                 ImagePath=ci.ImagePath,
+                                 Date=ci.Date
+                             };
+                return result.ToList();
+            }
+        }
+    }
 }
+

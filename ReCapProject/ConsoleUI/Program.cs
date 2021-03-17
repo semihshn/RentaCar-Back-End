@@ -1,4 +1,6 @@
-﻿using Business.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
+using Core.Entities.Concrete;
 using DataAccess.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -12,34 +14,34 @@ namespace ConsoleUI
 	{
 		static void Main(string[] args)
         {
-            //TestGetAllCar();
+			//TestGetAllCar();
 
-            //TestGetAllBrand();
+			//TestGetAllBrand();
 
-            //TestGetAllColor();
+			//TestGetAllColor();
 
-            //TestGetAllCarModel();
+			//TestGetAllCarModel();
 
-            //TestUserGetAll();
+			//TestUserGetAll();
 
-            //TestGetAllCustomer();
+			//TestGetAllCustomer();
 
-            //TestGetAllRentals();
+			//TestGetAllRentals();
 
 
-            //TestAddNewCar(3,4,5,"1984",500,"Kırmızı şeytan");
+			//TestAddNewCar(3,4,5,"1984",500,"Kırmızı şeytan");
 
-            //TestAddNewBrand("A");
+			//TestAddNewBrand("A");
 
-            //TestAddNewColor("Sarı");
+			//TestAddNewColor("Sarı");
 
-            //TestAddNewCarModel(3, "288 GTO");
+			//TestAddNewCarModel(3, "288 GTO");
 
-            //TestUserAdd("Melike","Belpınar","mlk_blp@hotmail.com","12345689");
+			//TestUserAdd("Melike","Belpınar","mlk_blp@hotmail.com","12345689");
 
-            //TestAddNewCustomer(2,"BorsaBiziz A.S");
+			//TestAddNewCustomer(2,"BorsaBiziz A.S");
 
-            //TestAddNewRentalCar(1,1);
+			//TestAddNewRentalCar(9,4);
 
 
 
@@ -56,24 +58,24 @@ namespace ConsoleUI
 			//TestDeleteColor(3);
 			//TestDeleteRental(23);
 
+			//TestDeleteCarImage(9);
+			//TestGetAllCarImage();
 
+			//TestGetCarDetails(4);
 
+			//TestGetRentalDetailsDto();
 
-            //TestGetCarDetails();
+		}
 
-            //TestGetRentalDetailsDto(1);
-
-        }
-
-        private static void TestGetRentalDetailsDto(int id)
+        private static void TestGetRentalDetailsDto()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-            var result = rentalManager.GetRentalDetailsDto(id);
+            //var result = rentalManager.GetRentalDetailsDto();
 
-            foreach (var rentals in result.Data)
+           // foreach (var rentals in result.Data)
             {
-                Console.WriteLine("{0}/{1}/{2}//{3}//{4}/{5}/{6}", rentals.Id, rentals.CarId, rentals.CarName, rentals.UserName, rentals.CustomerName, rentals.RentDate, rentals.ReturnDate);
+                //Console.WriteLine("{0}/{1}/{2}//{3}//{4}/{5}/{6}", rentals.Id, rentals.CarId, rentals.CarName, rentals.UserName, rentals.CustomerName, rentals.RentDate, rentals.ReturnDate);
             }
         }
 
@@ -142,7 +144,7 @@ namespace ConsoleUI
             var result = userManager.GetAll();
             foreach (var user in result.Data)
             {
-                Console.WriteLine("{0}/{1}/{2}/{3}/{4}", user.Id, user.FirstName, user.LastName, user.Email, user.Password);
+                Console.WriteLine("{0}/{1}/{2}/{3}/{4}", user.Id, user.FirstName, user.LastName, user.Email);
             }
         }
 
@@ -154,8 +156,7 @@ namespace ConsoleUI
             {
                 FirstName = firstName,
                 LastName = lastName,
-                Email = eMail,
-                Password = password
+                Email = eMail
 			});
             return userManager;
         }
@@ -181,6 +182,18 @@ namespace ConsoleUI
 			}
 		}
 
+		private static void TestGetAllCarImage()
+		{
+			CarImageManager carImageManager = new CarImageManager(new EfCarImageDal());
+
+			var result = carImageManager.GetAll();
+
+			foreach (var carImage in result.Data)
+			{
+				Console.WriteLine("{0}/{1}/{2}/{3}", carImage.Id,carImage.CarId,carImage.ImagePath,carImage.Date);
+			}
+		}
+
 		private static void TestGetAllColor()
 		{
 			ColorManager colorManager = new ColorManager(new EfColorDal());
@@ -202,22 +215,6 @@ namespace ConsoleUI
 			foreach (var carmodel in result.Data)
 			{
 				Console.WriteLine("{0}/{1}/{2}", carmodel.Id, carmodel.BrandId, carmodel.Name);
-			}
-		}
-
-		private static void TestGetCarDetails()
-		{
-			CarManager carManager = new CarManager(new EfCarDal());
-
-			var result = carManager.GetCarDetails();
-
-			foreach (var car in result.Data)
-			{
-				Console.WriteLine("{0}/{1}/{2}/{3}",
-					car.CarName,
-					car.ColorName,
-					car.BrandName,
-					car.DailyPrice);
 			}
 		}
 
@@ -275,6 +272,13 @@ namespace ConsoleUI
 			carManager.Delete(result.Data);
 		}
 
+		private static void TestDeleteCarImage(int id)
+		{
+			CarImageManager carImageManager = new CarImageManager(new EfCarImageDal());
+			var result = carImageManager.GetById(id);
+			carImageManager.Delete(result.Data);
+		}
+
 		private static void TestDeleteBrand(int id)
 		{
 			BrandManager brandManager = new BrandManager(new EfBrandDal());
@@ -300,15 +304,15 @@ namespace ConsoleUI
 		{
 			CarManager carManager = new CarManager(new EfCarDal());
 
-			var result = carManager.GetCarsByColorId(id);
+			var result = carManager.GetCarDetails(c=>c.ColorId==id);
 
 			foreach (var car in result.Data)
 			{
 				Console.WriteLine("{0}/{1}/{2}/{3}/{4}/{5}/{6}",
-					car.Id,
-					car.BrandId,
-					car.ModelId,
-					car.ColorId,
+					//car.Id,
+					//car.BrandId,
+					//car.ModelId,
+					//car.ColorId,
 					car.DailyPrice,
 					car.ModelYear,
 					car.Description);
@@ -319,15 +323,15 @@ namespace ConsoleUI
 		{
 			CarManager carManager = new CarManager(new EfCarDal());
 
-			var result = carManager.GetCarsByBrandId(id);
+			var result = carManager.GetCarDetails(c=>c.BrandId==id);
 
 			foreach (var car in result.Data)
 			{
 				Console.WriteLine("{0}/{1}/{2}/{3}/{4}/{5}/{6}",
-					car.Id,
-					car.BrandId,
-					car.ModelId,
-					car.ColorId,
+					//car.Id,
+					//car.BrandId,
+					//car.ModelId,
+					//car.ColorId,
 					car.DailyPrice,
 					car.ModelYear,
 					car.Description);

@@ -2,12 +2,14 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -24,8 +26,24 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarModelValidator))]
         public IResult Add(CarModel carModel)
         {
+            IResult result = BusinessRules.Run(CheckIfModelNameOfExists(carModel.Name));
+
+            if (result!=null)
+            {
+                return result;
+            }
             _carModelDal.Add(carModel);
             return new SuccessResult(Messages.CarModelAdded);
+        }
+
+        private IResult CheckIfModelNameOfExists(string modelName)
+        {
+            var result = _carModelDal.GetAll(p => p.Name == modelName).Any();
+            if (!result)
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult(Messages.ModelNameMustUnique);
         }
 
         public IResult Delete(CarModel carModel)

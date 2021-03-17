@@ -17,16 +17,8 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(r => r.CarId).NotEmpty();
             RuleFor(r => r.CustomerId).NotEmpty();
-
-            RuleFor(r => r.CarId).Must(RentControll).WithMessage("Eklenmek istenen araç zaten kiralanmış");
-        }
-
-        private bool RentControll(int arg)
-        {
-            IRentalDal _rentalDal=new EfRentalDal();
-
-            var result = _rentalDal.GetRentalDetails(x => x.CarId == arg);
-            return result.Count > 0 ? false : true;
+            RuleFor(r => r.RentDate).GreaterThanOrEqualTo(DateTime.Today).WithMessage("Rent Date can't be earlier than today!!");
+            RuleFor(r => r.ReturnDate).GreaterThanOrEqualTo(r => r.RentDate).When(r => r.ReturnDate.HasValue).WithMessage("Rent Date can't bigger than Return Date!!");
         }
     }
 }
