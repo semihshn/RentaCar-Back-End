@@ -33,7 +33,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  UserName = u.FirstName + " " + u.LastName,
                                  RentDate = r.RentDate,
                                  ReturnDate = r.ReturnDate,
-                                 TotalPrice = Convert.ToDecimal(r.ReturnDate.Value.Day - r.RentDate.Day) * c.DailyPrice
+                                 TotalPrice = (r.ReturnDate.Value.Day - r.RentDate.Day) * c.DailyPrice
                              };
                 return result.ToList();
             }
