@@ -69,6 +69,8 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.ConfigureCustomExceptionMiddleware();//Tüm sistemi try-catch içine aldýk
+
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());//Hedef adresten hangi istek gelirse gelsin(get,post,put vs.) kabul et , ben bu siteyi biliyorum , güveniyorum diyoruz
 
             app.UseHttpsRedirection();

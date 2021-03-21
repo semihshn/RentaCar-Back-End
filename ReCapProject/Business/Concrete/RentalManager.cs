@@ -34,7 +34,6 @@ namespace Business.Concrete
                 return result;
             }
 
-
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
         }
