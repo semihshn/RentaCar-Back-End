@@ -43,6 +43,8 @@ namespace ConsoleUI
 
 			//TestAddNewRentalCar(9,4);
 
+			TestAddNewCreditCard("1234567894521452", "123", "156", 4);
+
 
 
 
@@ -112,7 +114,21 @@ namespace ConsoleUI
             return rentalManager;
         }
 
-        private static void TestGetAllCustomer()
+		private static CreditCardManager TestAddNewCreditCard(string cardNumber,string cvc,string expiration, int customerId)
+		{
+			CreditCardManager creditCardManager = new CreditCardManager(new EfCreditCardDal());
+
+			creditCardManager.Pay(new CreditCard()
+			{
+				CardNumber=cardNumber,
+				Cvc=cvc,
+				Expiration=expiration,
+				CustomerId = customerId
+			});
+			return creditCardManager;
+		}
+
+		private static void TestGetAllCustomer()
         {
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 

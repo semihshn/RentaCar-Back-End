@@ -27,7 +27,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            IResult result = BusinessRules.Run(CheckCarExistInRentalList(rental));
+            IResult result = BusinessRules.Run(CheckCarExistInRentalList(rental), ChecCarExistRentalHistory(rental));
 
             if (result != null)
             {
@@ -74,6 +74,25 @@ namespace Business.Concrete
             }
 
             return new SuccessResult();
+        }
+
+        private IResult ChecCarExistRentalHistory(Rental rental)
+        {
+
+            List<Rental> rentalList = _rentalDal.GetAll(r => r.CarId == rental.CarId);
+			for (int i = 0; i < rentalList.Count; i++)
+			{
+                if (rentalList[i]== null)
+                {
+                    return new SuccessResult();
+                }
+                else if(rentalList[i].ReturnDate>rental.RentDate)
+                {
+                    return new ErrorResult(Messages.AlreadyRented);
+                }
+            }
+            return new SuccessResult();
+            
         }
     }
 }

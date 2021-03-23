@@ -66,5 +66,6 @@ namespace Business.Constants
 		public static string FailedCarImageAdd="Fotoğraf yüklenirken hata oluştu";
 		public static string ReturnedRental="Kiralama bilgisi döndürüldü";
 		public static string FailedRentalAddOrUpdate="Bu kiralık araç daha önce eklenmiş";
+		public static string AlreadyRented="Bu araç belirlediğiniz tarihlerde dolu , ileriki bir tarih seçiniz";
 	}
 }
