@@ -2,7 +2,7 @@
 
 namespace Core.Extensions
 {
-	public static class ExceptionMiddlewareExtensions//Keni Middleware'ımızı yazıyoruz ve startup.cs ekliyoruz
+	public static class ExceptionMiddlewareExtensions//Kendi Middleware'ımızı yazıyoruz ve startup.cs ekliyoruz
     {
         public static void ConfigureCustomExceptionMiddleware(this IApplicationBuilder app)
         {
