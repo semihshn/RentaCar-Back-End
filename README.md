@@ -7,7 +7,7 @@
 
 <br />
 <p align="center">
-  <a href="https://github.com/ahmet-cetinkaya/ReCapProject">
+  <a href="https://github.com/semihshn/RentaCar-Back-end">
     <img src="https://user-images.githubusercontent.com/53148314/110218503-2f2ef700-7ecb-11eb-9753-6f760c72511e.png" alt="ReCap Project">
   </a>
   <h2 align="center">ReCapProject</h2>
@@ -15,9 +15,9 @@
     Car Rental project with N-Layer Architecture.
     <br />
     <br />
-    <a href="https://github.com/ahmet-cetinkaya/ReCapProject/issues">Report Bug</a>
+    <a href="https://github.com/semihshn/RentaCar-Back-end/issues">Report Bug</a>
     ·
-    <a href="https://github.com/ahmet-cetinkaya/ReCapProject/issues">Request Feature</a>
+    <a href="https://github.com/semihshn/RentaCar-Back-end/issues">Request Feature</a>
   </p>
 </p>
 
@@ -225,6 +225,13 @@ Requests are authenticated using the `Authorization` header and value `Bearer {{
 | Id   | int          | False       |         |
 | Name | nvarchar(25) | False       |         |
 
+## Models
+
+| Name | Data Type    | Allow Nulls | Default |
+| :--- | :----------- | :---------- | :------ |
+| Id   | int          | False       |         |
+| Name | nvarchar(25) | False       |         |
+
 ## Color
 
 | Name | Data Type    | Allow Nulls | Default |
@@ -318,23 +325,23 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Ahmet ÇETİNKAYA - [ahmetcetinkaya.info](https://ahmetcetinkaya.info/)
+Semih Şahan - [semihshn.rf.gd](http://semihshn.rf.gd/)
 
-Project Link: [https://github.com/ahmet-cetinkaya/ReCapProject](https://github.com/ahmet-cetinkaya/ReCapProject)
+Project Link: [https://github.com/semihshn/RentaCar-Back-end](https://github.com/semihshn/RentaCar-Back-end)
 
 ## Acknowledgements
 
 - engindemirog
 
-[contributors-shield]: https://img.shields.io/github/contributors/ahmet-cetinkaya/ReCapProject.svg?style=for-the-badge
-[contributors-url]: https://github.com/ahmet-cetinkaya/ReCapProject/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/ahmet-cetinkaya/ReCapProject.svg?style=for-the-badge
-[forks-url]: https://github.com/ahmet-cetinkaya/ReCapProject/network/members
-[stars-shield]: https://img.shields.io/github/stars/ahmet-cetinkaya/ReCapProject.svg?style=for-the-badge
-[stars-url]: https://github.com/ahmet-cetinkaya/ReCapProject/stargazers
-[issues-shield]: https://img.shields.io/github/issues/ahmet-cetinkaya/ReCapProject.svg?style=for-the-badge
-[issues-url]: https://github.com/ahmet-cetinkaya/ReCapProject/issues
-[license-shield]: https://img.shields.io/github/license/ahmet-cetinkaya/ReCapProject.svg?style=for-the-badge
-[license-url]: https://github.com/ahmet-cetinkaya/ReCapProject/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/semihshn/RentaCar-Back-end.svg?style=for-the-badge
+[contributors-url]: https://github.com/semihshn/RentaCar-Back-end/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/semihshn/RentaCar-Back-end.svg?style=for-the-badge
+[forks-url]: https://github.com/semihshn/RentaCar-Back-end/network/members
+[stars-shield]: https://img.shields.io/github/stars/semihshn/RentaCar-Back-end.svg?style=for-the-badge
+[stars-url]: https://github.com/semihshn/RentaCar-Back-end/stargazers
+[issues-shield]: https://img.shields.io/github/issues/semihshn/RentaCar-Back-end.svg?style=for-the-badge
+[issues-url]: https://github.com/semihshn/RentaCar-Back-end/issues
+[license-shield]: https://img.shields.io/github/license/semihshn/RentaCar-Back-end.svg?style=for-the-badge
+[license-url]: https://github.com/semihshn/RentaCar-Back-end
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/ahmet-cetinkaya
+[linkedin-url]: https://www.linkedin.com/in/semih-%C5%9Fahan-8a7627176/
