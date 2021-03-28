@@ -7,38 +7,84 @@
 <br />
 <p align="center">
   <a href="https://github.com/semihshn/RentaCar-Back-end">
-    <img style="height: 25px; width: 25px;" src="https://images.ctfassets.net/ro7z507xvlp4/6VE6CpObJe6qyHHYEzb81X/a6c2752bc9cede65b958ddbe8521af2c/mb_gla_1x.png?q=80&fm=png">
+    <img src="https://www.car2go.com/media/data/demo/images/171109_gla_cla_800x600_-2x_502.jpg">
   </a>
   <h2 align="center">ReCapProject</h2>
   <p align="center">
-    Car Rental project with N-Layer Architecture.
-    <br />
-    <br />
-    <a href="https://github.com/semihshn/RentaCar-Back-end/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/semihshn/RentaCar-Back-end/issues">Request Feature</a>
+    Car Rental project with N-Layer Architecture.    
   </p>
 </p>
 
+<br />
+<br />
+    <p align="center">
+    In this project, we created a website for car rental using Asp.net Web API + Angular, in fact, we created a platform for the car rental industry, car rental companies will be able to register on our site and reach more customers, customers will be able to rent a car at a cheaper price.
+    </p>
+
 <details open="open">
-  <summary><strong>Table of Contents</strong></summary>
+  <summary><strong>Techs</strong></summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="https://github.com/semihshn/RentaCar-Back-end/tree/master/ReCapProject">Back-End</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li>Restful Web Api Vers. .Net Core 3.1</li>
       </ul>
-    </li>
+      <ul>
+        <li>Multi-Layer Architecture</li>
+      </ul>
+      <ul>
+        <li>Interceptor</li>
+      </ul>
+      <ul>
+        <li>Aspects</li>
+      </ul>
+      <ul>
+        <li>Cache Managment</li>
+      </ul>
+      <ul>
+        <li>Fluent Validation</li>
+      </ul>
+      <ul>
+        <li>Authorization</li>
+      </ul>
+      <ul>
+        <li>Authentication</li>
+      </ul>
+      <ul>
+        <li>Autofac</li>
+      </ul>
+      <ul>
+        <li>Json Web Token Managment</li>
+      </ul>
+      <ul>
+        <li>Async Programing</li>
+      </ul>
+      <ul>
+        <li>Cross Cutting Concerns</li>
+      </ul>
+      
+   </li>
     <li>
-    <a href="#usage">Usage</a>
-    <ul>
-        <li><a href="#specifications">Specifications</a></li>
+    <a href="https://github.com/semihshn/RentaCar-Front-End">Front-End</a>
+      <ul>
+        <li>Angular 11</li>
+      </ul>
+      <ul>
+        <li>Bootstrap 5.0</li>
+      </ul>
+      <ul>
+        <li>HttpClient Interceptor</li>
+      </ul>
+      <ul>
+        <li>Guards</li>
+      </ul>
+      <ul>
+        <li>Pipes</li>
+      </ul>
+      <ul>
+        <li>Directives</li>
       </ul>
     </li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -52,147 +98,11 @@
 [![Entity-Framework](https://img.shields.io/badge/Entity%20Framework-004880?style=for-the-badge&logo=nuget&logoColor=white)](https://docs.microsoft.com/en-us/ef/)
 [![Autofac](https://img.shields.io/badge/Autofac-004880?style=for-the-badge&logo=nuget&logoColor=white)](https://autofac.org/)
 [![Fluent-Validation](https://img.shields.io/badge/Fluent%20Validation-004880?style=for-the-badge&logo=nuget&logoColor=white)](https://fluentvalidation.net/)
+[![Angular 11](https://angular.io/assets/images/logos/angular/logo-nav@2x.png)](http://angular.io/)
+[![Bootstrap 5.0](https://angular.io/assets/images/logos/angular/logo-nav@2x.png)](http://angular.io/)
+https://getbootstrap.com/
 
 ## Usage
-
-### Specifications
-
-<details>
-  <summary>Toggle Content</summary>
-
-#### Cars
-
-### Public Operations
-
-- List all cars
-  - Searching Cars By Brand, Color
-  - Caching
-- Get a single car
-  - Caching
-
-### Private Operations
-
-- Ask (Create) a New Car
-  - Authenticated users only (Logged In Users)
-  - Field validation
-- Edit a Question
-  - Authenticated users only (Logged In Users)
-  - Field Validation
-- Delete a Question
-  - Authenticated users only (Logged In Users)
-
-#### Car Images
-
-#### Public Operations
-
-- List all car images
-- Get a car image
-  - Searching Car Image By Car
-  - Caching
-
-#### Private Operations
-
-- Ask (Create) a New Car Image
-  - Authenticated users only (Logged In Users)
-- Edit a Car Image
-  - Authenticated users only (Logged In Users)
-- Delete a Car Image
-  - Authenticated users only (Logged In Users)
-
-#### Brands
-
-#### Public Operations
-
-- Get All Brands
-- Get Single Brand
-
-#### Private Operations
-
-- Add (Create) a New Answer To Question
-  - Authenticated users only (Logged In Users)
-- Edit a Answer
-  - Authenticated users only (Logged In Users)
-- Delete a Answer
-  - Authenticated users only (Logged In Users)
-
-#### Color
-
-#### Public Operations
-
-- Get All Colors
-- Get Single Color
-
-#### Private Operations
-
-- Add (Create) a Color
-  - Authenticated users only (Logged In Users)
-- Edit a Color
-  - Authenticated users only (Logged In Users)
-- Delete a Color
-  - Authenticated users only (Logged In Users)
-
-#### Customer
-
-#### Public Operations
-
-- Get All Customers
-- Get Single Customer
-
-#### Private Operations
-
-- Add (Create) a Customer
-  - Authenticated users only (Logged In Users)
-- Edit a Customer
-  - Authenticated users only (Logged In Users)
-- Delete a Customer
-  - Authenticated users only (Logged In Users)
-
-#### Rental
-
-#### Public Operations
-
-- Get All Rentals
-- Get Single Rental
-
-#### Private Operations
-
-- Add (Create) a Rental
-  - Authenticated users only (Logged In Users)
-- Edit a Rental
-  - Authenticated users only (Logged In Users)
-- Delete a Rental
-  - Authenticated users only (Logged In Users)
-
-#### Users
-
-#### Public Operations
-
-- List all Users
-- Get a User
-- Add (Create) a User
-
-#### Private Operations
-
-- Edit a User
-  - Authenticated users only (Logged In Users)
-- Delete a User
-  - Authenticated users only (Logged In Users)
-
-## Authentication
-
-Requests are authenticated using the `Authorization` header and value `Bearer {{token}}`. with a valid JWT.
-
-- Authentication Strategy : JWT
-  - JWT Expiration : 10 Minutes For Testing Api
-- Registration
-  - User can register as a "Admin" or simply "User"
-  - Password Salt
-  - Password Hash
-  - Token includes : "id", "email", "name" and "roles"
-  <!-- - Token Are Stored In Cookie -->
-- Login
-  - User can login with "email" and "password"
-  - Everytime a user login, new Token are sent to to client
 
 ## Models
 
@@ -204,6 +114,7 @@ Requests are authenticated using the `Authorization` header and value `Bearer {{
 | Name        | nvarchar(50)  | False       |         |
 | BrandId     | int           | False       |         |
 | ColorId     | int           | False       |         |
+| ModelId     | int           | False       |         |
 | DailyPrice  | decimal(18,0) | False       |         |
 | ModelYear   | smallint      | False       |         |
 | Description | nvarchar(50)  | True        |         |
@@ -317,10 +228,6 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
