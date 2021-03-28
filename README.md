@@ -99,8 +99,6 @@
 [![Autofac](https://img.shields.io/badge/Autofac-004880?style=for-the-badge&logo=nuget&logoColor=white)](https://autofac.org/)
 [![Fluent-Validation](https://img.shields.io/badge/Fluent%20Validation-004880?style=for-the-badge&logo=nuget&logoColor=white)](https://fluentvalidation.net/)
 [![Angular 11](https://angular.io/assets/images/logos/angular/logo-nav@2x.png)](http://angular.io/)
-[![Bootstrap 5.0](https://angular.io/assets/images/logos/angular/logo-nav@2x.png)](http://angular.io/)
-https://getbootstrap.com/
 
 ## Usage
 
