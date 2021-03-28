@@ -8,7 +8,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/semihshn/RentaCar-Back-end">
-    <img src="https://user-images.githubusercontent.com/53148314/110218503-2f2ef700-7ecb-11eb-9753-6f760c72511e.png" alt="ReCap Project">
+    <img style="height: 25px; width: 25px;" src="https://images.ctfassets.net/ro7z507xvlp4/6VE6CpObJe6qyHHYEzb81X/a6c2752bc9cede65b958ddbe8521af2c/mb_gla_1x.png?q=80&fm=png">
   </a>
   <h2 align="center">ReCapProject</h2>
   <p align="center">
