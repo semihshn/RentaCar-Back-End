@@ -106,7 +106,7 @@
 
 ## Models
 
-### User
+### Cars
 
 | Name        | Data Type     | Allow Nulls | Default |
 | :---------- | :------------ | :---------- | :------ |
