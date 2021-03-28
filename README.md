@@ -36,13 +36,16 @@
         <li>Interceptor</li>
       </ul>
       <ul>
-        <li>Aspects</li>
+        <li>Cache Aspect</li>
       </ul>
       <ul>
-        <li>Cache Managment</li>
+        <li>Transaction Aspect</li>
       </ul>
       <ul>
-        <li>Fluent Validation</li>
+        <li>Performance Aspect</li>
+      </ul>
+      <ul>
+        <li>Validation Aspect(Fluent Validation)</li>
       </ul>
       <ul>
         <li>Authorization</li>
@@ -201,19 +204,19 @@
 
 ### Business
 
-Business Layer created to process or control the incoming information according to the required conditions.
+We write our workloads on this layer. This layer is the layer that will process the data that has been pulled into the project by Data Access. We do not use the Data Access layer directly in our applications. By putting the Business layer together, we make Business do it for us. The data from the user first goes to the Business layer, and then is processed and transferred to the Data Access layer. In the business tier, we also specify who will access this data. For example, there is R&D and HR section. We want the R&D department to add to the database, but if we want the HR department to only pull the data, we do this in the Business Layer.
 
 ### Core
 
-Core layer containing various particles independent of the project.
+In this layer, we have base classes that all projects can use in common.
 
 ### DataAccess
 
-Data Access Layer created to perform database CRUD operations.
+Only database operations are performed in this layer. The task of this layer is to add, delete, update and extract data from the database. No other action is taken in this layer other than these operations.
 
 ### Entities
 
-Entities Layer created for database tables.
+In this layer, we determine our main classes that we will use throughout the project, so this is where we determine our real objects. Here, we match the objects we have determined with the objects registered in the database.
 
 ### WebAPI
 
