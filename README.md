@@ -62,6 +62,10 @@
       <ul>
         <li>Cross Cutting Concerns</li>
       </ul>
+      <ul>
+        <li>SOLID</li>
+      </ul>
+
       
    </li>
     <li>
