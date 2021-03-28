@@ -102,8 +102,6 @@
 [![Autofac](https://img.shields.io/badge/Autofac-004880?style=for-the-badge&logo=nuget&logoColor=white)](https://autofac.org/)
 [![Fluent-Validation](https://img.shields.io/badge/Fluent%20Validation-004880?style=for-the-badge&logo=nuget&logoColor=white)](https://fluentvalidation.net/)
 
-## Usage
-
 ## Models
 
 ### Cars
@@ -232,6 +230,8 @@ Contributions are what make the open source community such an amazing place to b
 ## Contact
 
 Semih Şahan - [semihshn.rf.gd](http://semihshn.rf.gd/)
+
+Linkedin - [Linkedin](https://www.linkedin.com/in/semih-%C5%9Fahan-8a7627176/)
 
 Project Link: [https://github.com/semihshn/RentaCar-Back-end](https://github.com/semihshn/RentaCar-Back-end)
 
