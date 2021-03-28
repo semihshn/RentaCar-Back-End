@@ -10,6 +10,9 @@ namespace Business.Abstract
 	public interface ICreditCardService
 	{
 		IDataResult<List<CreditCard>> GetCreditCards(Expression<Func<CreditCard, bool>> filter = null);
+		IDataResult<CreditCard> GetCreditCard(Expression<Func<CreditCard, bool>> filter = null);
 		IResult Pay(CreditCard creditCard);
+
+
 	}
 }

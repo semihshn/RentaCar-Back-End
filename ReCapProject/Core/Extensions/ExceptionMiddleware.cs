@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -36,11 +37,23 @@ namespace Core.Extensions
             httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             string message = "Internal Server Error";
-            IEnumerable<ValidationFailure> errors;
-            if (e.GetType() == typeof(ValidationException))//Eğer bir hata alınırsa buraya geliyor ve aldığın hata ValidationException ise bir mesaj oluşturuyor
+
+
+            if (e.GetType() == typeof(SecurityException))//Eğer bir SecurityException hatası alınırsa buraya geliyor ve aldığın hata SecurityException ise bir mesaj oluşturuyor
             {
                 message = e.Message;
-                errors = ((ValidationException)e).Errors;
+                httpContext.Response.StatusCode = 403;
+
+                return httpContext.Response.WriteAsync(new SecurityErrorDetail //Validasyon hatası dönerse bu çalışacak
+                {
+                    StatusCode = 403,
+                    Message = message
+                }.ToString());
+            }
+            else if (e.GetType() == typeof(ValidationException))//Eğer bir ValidationException hatası alınırsa buraya geliyor ve aldığın hata ValidationException ise bir mesaj oluşturuyor
+            {
+                message = e.Message;
+                IEnumerable<ValidationFailure> errors = ((ValidationException)e).Errors;
                 httpContext.Response.StatusCode = 400;
 
                 return httpContext.Response.WriteAsync(new ValidationErrorDetails//Validasyon hatası dönerse bu çalışacak
@@ -54,7 +67,7 @@ namespace Core.Extensions
             return httpContext.Response.WriteAsync(new ErrorDetails//Eğer sistem hata verirse back-end'in frontend'e ne döndereceğini belirtiyor , sınırlandırıyoruz burada
             {
                 StatusCode = httpContext.Response.StatusCode,
-                Message = message
+                Message = e.Message
             }.ToString());
         }
     }

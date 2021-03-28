@@ -71,7 +71,7 @@ namespace ConsoleUI
 
         private static void TestGetRentalDetailsDto()
         {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
             //var result = rentalManager.GetRentalDetailsDto();
 
@@ -83,36 +83,36 @@ namespace ConsoleUI
 
         private static void TestDeleteRental(int id)
         {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-            rentalManager.Delete(new Rental() { Id = id });
+            //rentalManager.Delete(new Rental() { Id = id });
         }
 
-        private static RentalManager TestGetAllRentals()
-        {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+  //      private static RentalManager TestGetAllRentals()
+  //      {
+		//	RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-            var result = rentalManager.GetAll();
+		//	var result = rentalManager.GetAll();
 
-            foreach (var rentals in result.Data)
-            {
-                Console.WriteLine("{0}/{1}/{2}//{3}//{4}", rentals.Id, rentals.CarId, rentals.CustomerId, rentals.RentDate, rentals.ReturnDate);
-            }
+		//	foreach (var rentals in result.Data)
+		//	{
+		//		Console.WriteLine("{0}/{1}/{2}//{3}//{4}", rentals.Id, rentals.CarId, rentals.CustomerId, rentals.RentDate, rentals.ReturnDate);
+		//	}
 
-            return rentalManager;
-        }
+		//	return rentalManager;
+		//}
 
-        private static RentalManager TestAddNewRentalCar(int carId, int customerId)
-        {
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+   //     private static RentalManager TestAddNewRentalCar(int carId, int customerId)
+   //     {
+   //         RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-			rentalManager.Add(new Rental()
-			{
-				CarId = carId,
-				CustomerId = customerId
-			});
-            return rentalManager;
-        }
+			//rentalManager.Add(new Rental()
+			//{
+			//	CarId = carId,
+			//	CustomerId = customerId
+			//});
+   //         return rentalManager;
+   //     }
 
 		private static CreditCardManager TestAddNewCreditCard(string cardNumber,string cvc,string expiration, int customerId)
 		{
@@ -128,30 +128,30 @@ namespace ConsoleUI
 			return creditCardManager;
 		}
 
-		private static void TestGetAllCustomer()
-        {
-            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+		//private static void TestGetAllCustomer()
+  //      {
+  //          CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
-            var result = customerManager.GetAll();
+  //          var result = customerManager.GetAll();
 
-            foreach (var customer in result.Data)
-            {
-                Console.WriteLine("{0}/{1}/{2}", customer.Id, customer.UserId, customer.CompanyName);
+  //          foreach (var customer in result.Data)
+  //          {
+  //              Console.WriteLine("{0}/{1}/{2}", customer.Id, customer.UserId, customer.CompanyName);
 
-            }
-        }
+  //          }
+  //      }
 
-        private static CustomerManager TestAddNewCustomer(int id, string companyName)
-        {
-            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+        //private static CustomerManager TestAddNewCustomer(int id, string companyName)
+        //{
+        //    CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
 
-            customerManager.Add(new Customer()
-            {
-                UserId = id,
-                CompanyName = companyName,
-            });
-            return customerManager;
-        }
+        //    customerManager.Add(new Customer()
+        //    {
+        //        UserId = id,
+        //        CompanyName = companyName,
+        //    });
+        //    return customerManager;
+        //}
 
         private static void TestUserGetAll()
         {

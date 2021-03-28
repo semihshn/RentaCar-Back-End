@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -75,6 +76,16 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpPost("updateofuserandcustomer")]
+        public IActionResult UpdateWithUser(CustomerAndUserUpdateDto customerUpdateDto)
+        {
+            var result = _customerService.UpdateCustomerAndUser(customerUpdateDto);
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
+
         [HttpPost("delete")]
         public IActionResult Delete(Customer customer)
         {
@@ -83,6 +94,16 @@ namespace WebAPI.Controllers
             {
                 return Ok(result);
             }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getcustomeranduserdetailsbyuserid")]
+        public IActionResult GetDetailCustomers(int userId)
+        {
+            var result = _customerService.GetCustomerAndUserDetails(userId);
+            if (result.Success)
+                return Ok(result);
+
             return BadRequest(result);
         }
     }

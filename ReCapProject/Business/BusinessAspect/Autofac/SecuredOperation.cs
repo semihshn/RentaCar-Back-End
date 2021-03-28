@@ -8,6 +8,7 @@ using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
 using Core.Extensions;
 using Business.Constants;
+using System.Security;
 
 namespace Business.BusinessAspect.Autofac
 {
@@ -32,8 +33,7 @@ namespace Business.BusinessAspect.Autofac
                     return;
                 }
             }
-            return;
-            throw new Exception(Messages.AuthorizationDenied);
+            throw new SecurityException(Messages.AuthorizationDenied);
         }
     }
 }

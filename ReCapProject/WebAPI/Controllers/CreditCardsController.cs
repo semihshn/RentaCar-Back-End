@@ -41,5 +41,27 @@ namespace WebAPI.Controllers
 			}
 			return BadRequest(result);
 		}
+
+		[HttpGet("getallbycustomerid")]
+		public IActionResult GetAllByCustomerId(int customerId)
+		{
+			var result = _creditCardService.GetCreditCards(c=>c.CustomerId==customerId);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+		[HttpGet("getbycustomerid")]
+		public IActionResult GetByCustomerId(int customerId)
+		{
+			var result = _creditCardService.GetCreditCard(c=>c.CustomerId==customerId);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
 	}
 }

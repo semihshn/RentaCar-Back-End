@@ -31,7 +31,8 @@ namespace Business.Concrete
                 LastName = userForRegisterDto.LastName,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                Status = true
+                Status = true,
+                Age=userForRegisterDto.Age
             };
             _userService.Add(user);//Kullanıcı veri tabanına kaydediliyor
             return new SuccessDataResult<User>(user, Messages.UserRegistered);

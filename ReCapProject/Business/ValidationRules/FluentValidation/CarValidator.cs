@@ -13,6 +13,8 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.BrandId).NotEmpty();
             RuleFor(c => c.ColorId).NotEmpty();
             RuleFor(c => c.DailyPrice).GreaterThan(0);
+
+            RuleFor(c => c.FindeksPoint).ExclusiveBetween(0, 1900);
         }
     }
 }

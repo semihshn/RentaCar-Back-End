@@ -22,6 +22,11 @@ namespace Business.Concrete
 			_creditCardDal = creditCardDal;
 		}
 
+		public IDataResult<CreditCard> GetCreditCard(Expression<Func<CreditCard, bool>> filter = null)
+		{
+			return new SuccessDataResult<CreditCard>(_creditCardDal.Get(filter));
+		}
+
 		public IDataResult<List<CreditCard>> GetCreditCards(Expression<Func<CreditCard, bool>> filter = null)
 		{
 			return new SuccessDataResult<List<CreditCard>>(_creditCardDal.GetAll(filter));

@@ -67,5 +67,11 @@ namespace Business.Constants
 		public static string ReturnedRental="Kiralama bilgisi döndürüldü";
 		public static string FailedRentalAddOrUpdate="Bu kiralık araç daha önce eklenmiş";
 		public static string AlreadyRented="Bu araç belirlediğiniz tarihlerde dolu , ileriki bir tarih seçiniz";
+		public static string ErrorCarFindeksPoint= "Kiralanmak istenen aracın findeks puanı yok , başka bir araç seçin";
+        public static string ErrorCustomerFindeksPoint = "Findeks puanınız olmadığından bu aracı size kiralayamayız";
+		public static string InsufficientFindeksScore="Findeks puanınız bu aracı kiralamak için yetersiz";
+        public static string CustomerNotFound = "Böyle bir müşteri bulunamadı";
+        public static string CustomerNotUpdated = "Müşteri bilgilerini güncellerken bir hatayla karşılaştık";
+        public static string UserNotUpdated = "Kullanıcı bilgilerini güncellerken bir hatayla karşılaştık";
 	}
 }

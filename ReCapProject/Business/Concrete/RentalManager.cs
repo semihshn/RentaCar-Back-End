@@ -18,16 +18,21 @@ namespace Business.Concrete
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
+        ICarService _carService;
+        ICustomerService _customerService;
 
-        public RentalManager(IRentalDal rentalDal)
+
+        public RentalManager(IRentalDal rentalDal,ICarService carService,ICustomerService customerService)
         {
             _rentalDal = rentalDal;
+            _carService = carService;
+            _customerService = customerService;
         }
 
-        [ValidationAspect(typeof(RentalValidator))]
+        //[ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            IResult result = BusinessRules.Run(CheckCarExistInRentalList(rental), ChecCarExistRentalHistory(rental));
+            IResult result = BusinessRules.Run(CheckCarExistInRentalList(rental), ChecCarExistRentalHistory(rental), ChecIfCarOfFindeksPoint(rental), ChecIfCustomerOfFindeksPoint(rental), ChecIfFindeksPoint(rental));
 
             if (result != null)
             {
@@ -93,6 +98,40 @@ namespace Business.Concrete
             }
             return new SuccessResult();
             
+        }
+
+        private IResult ChecIfCarOfFindeksPoint(Rental rental)
+        {
+
+            var car = _carService.GetById(rental.CarId);
+			if (car.Data.FindeksPoint==null)
+			{
+                return new ErrorResult(Messages.ErrorCarFindeksPoint);
+			}
+            return new SuccessResult();
+        }
+
+        private IResult ChecIfCustomerOfFindeksPoint(Rental rental)
+        {
+
+            var customer = _customerService.GetById(rental.CustomerId);
+            if (customer.Data.FindeksPoint == null)
+            {
+                return new ErrorResult(Messages.ErrorCustomerFindeksPoint);
+            }
+            return new SuccessResult();
+        }
+
+        private IResult ChecIfFindeksPoint(Rental rental)
+        {
+
+            var customer = _customerService.GetById(rental.CustomerId);
+            var car = _carService.GetById(rental.CarId);
+            if (customer.Data.FindeksPoint<car.Data.FindeksPoint)
+            {
+                return new ErrorResult(Messages.InsufficientFindeksScore);
+            }
+            return new SuccessResult();
         }
     }
 }
