@@ -1,4 +1,8 @@
-﻿CREATE TABLE [dbo].[Brands] (
+CREATE DATABASE reCapDatabase;
+
+USE reCapDatabase
+
+CREATE TABLE [dbo].[Brands] (
     [Id]   INT           IDENTITY (1, 1) NOT NULL,
     [Name] NVARCHAR (25) NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
@@ -13,6 +17,7 @@ CREATE TABLE [dbo].[Colors] (
 CREATE TABLE [dbo].[Models] (
     [Id]   INT           IDENTITY (1, 1) NOT NULL,
     [BrandId] INT NOT NULL,
+    [Name] NVARCHAR (30) NOT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
 	CONSTRAINT [FK_Colors_Brands] FOREIGN KEY ([BrandId]) REFERENCES [dbo].[Brands] ([Id])
 );
@@ -25,6 +30,7 @@ CREATE TABLE [dbo].[Cars] (
     [DailyPrice]  DECIMAL (18)  NOT NULL,
     [ModelYear]   SMALLINT      NOT NULL,
     [Description] NVARCHAR (50) NULL,
+    [FindeksScore] INT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Cars_Brands] FOREIGN KEY ([BrandId]) REFERENCES [dbo].[Brands] ([Id]),
     CONSTRAINT [FK_Cars_Colors] FOREIGN KEY ([ColorId]) REFERENCES [dbo].[Colors] ([Id]),
@@ -39,14 +45,15 @@ CREATE TABLE [dbo].[Users] (
     [PasswordHash] VARBINARY(500)  NOT NULL,
     [PasswordSalt] VARBINARY(500)  NOT NULL,
     [Status]       BIT           NOT NULL,
-	[Age]       DATETIME        NOT NULL,
+    [Age]       DATETIME        NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
 CREATE TABLE [dbo].[Customers] (
     [Id]          INT        IDENTITY (1, 1) NOT NULL,
     [UserId]      INT        NOT NULL,
-    [CompanyName] NCHAR (50) NULL,
+    [CompanyName] NVARCHAR (50) NULL,
+    [FindeksScore] INT NULL,
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Customers_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([Id])
 );
@@ -55,7 +62,7 @@ CREATE TABLE [dbo].[Rentals] (
     [Id]         INT      IDENTITY (1, 1) NOT NULL,
     [CarId]      INT      NOT NULL,
     [CustomerId] INT      NOT NULL,
-    [RentDate] DATETIME NOT NULL,
+    [RentDate] DATETIME  NULL,
     [ReturnDate] DATETIME NULL, 
     PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Rentals_Cars] FOREIGN KEY ([CarId]) REFERENCES [dbo].[Cars] ([Id]),
